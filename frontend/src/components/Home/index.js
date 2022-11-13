@@ -9,7 +9,7 @@ import {
   HOME_PAGE_UNLOADED,
   HOME_PAGE_SEARCH,
   APPLY_TAG_FILTER,
-  CHANGE_TAB
+  CHANGE_TAB,
 } from "../../constants/actionTypes";
 
 const Promise = global.Promise;
@@ -29,7 +29,12 @@ const mapDispatchToProps = (dispatch) => ({
   onUnload: () => dispatch({ type: HOME_PAGE_UNLOADED }),
   onSearch: (searchQuery, tab) => {
     dispatch({ type: HOME_PAGE_SEARCH, searchQuery });
-    dispatch({ type: CHANGE_TAB, tab: tab, pager: agent.Items.all, payload: agent.Items.all(undefined, searchQuery) });
+    dispatch({
+      type: CHANGE_TAB,
+      tab: tab,
+      pager: agent.Items.all,
+      payload: agent.Items.all(undefined, searchQuery),
+    });
   },
 });
 
