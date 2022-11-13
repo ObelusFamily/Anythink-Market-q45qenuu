@@ -69,9 +69,19 @@ body {
 }
 
 .search-label {
-  width: 400px;
+  width: 0;
   position: relative;
+  margin: 0 3px;
+  visibility: collapse;
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+
+.visible {
+  width: 400px;
   margin: 0 10px;
+  visibility: visible;
+  opacity: 1;
 }
 
 .search-box {

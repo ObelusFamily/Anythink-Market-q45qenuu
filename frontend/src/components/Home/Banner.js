@@ -3,14 +3,22 @@ import logo from "../../imgs/logo.png";
 
 const Banner = (props) => {
   const [search, setSearch] = useState("");
+  const [showSearch, setShowSearch] = useState(false);
 
   return (
     <div className="banner text-white">
       <div className="container p-4 text-center">
         <img src={logo} alt="banner" />
         <div className="search-banner">
-          <span id="get-part">A place to get</span>
-          <label className="search-label">
+          <span
+            id="get-part"
+            onClick={() => {
+              setShowSearch(true);
+            }}
+          >
+            A place to get
+          </span>
+          <label className={`search-label ${showSearch ? "visible" : ""}`}>
             <input
               className="search-box"
               id="search-box"
