@@ -7,13 +7,16 @@ import { connect } from "react-redux";
 import {
   HOME_PAGE_LOADED,
   HOME_PAGE_UNLOADED,
+  HOME_PAGE_SEARCH,
   APPLY_TAG_FILTER,
+  CHANGE_TAB
 } from "../../constants/actionTypes";
 
 const Promise = global.Promise;
 
 const mapStateToProps = (state) => ({
   ...state.home,
+  ...state.itemList,
   appName: state.common.appName,
   token: state.common.token,
 });
@@ -24,6 +27,10 @@ const mapDispatchToProps = (dispatch) => ({
   onLoad: (tab, pager, payload) =>
     dispatch({ type: HOME_PAGE_LOADED, tab, pager, payload }),
   onUnload: () => dispatch({ type: HOME_PAGE_UNLOADED }),
+  onSearch: (searchQuery, tab) => {
+    dispatch({ type: HOME_PAGE_SEARCH, searchQuery });
+    dispatch({ type: CHANGE_TAB, tab: tab, pager: agent.Items.all, payload: agent.Items.all(undefined, searchQuery) });
+  },
 });
 
 class Home extends React.Component {
@@ -45,7 +52,7 @@ class Home extends React.Component {
   render() {
     return (
       <div className="home-page">
-        <Banner />
+        <Banner onSearch={this.props.onSearch} tab={this.props.tab} />
 
         <div className="container page">
           <Tags tags={this.props.tags} onClickTag={this.props.onClickTag} />

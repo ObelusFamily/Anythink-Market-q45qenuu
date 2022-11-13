@@ -1,4 +1,4 @@
-@import url("http://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800");
+@import url("https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800");
 
 // Override default variables before the import
 $primary: #2b1456;
@@ -27,6 +27,7 @@ body {
   background-position: top;
   background-repeat: no-repeat;
 }
+
 .page {
   margin-top: 2 * $spacer;
   margin-bottom: 2 * $spacer;
@@ -58,4 +59,39 @@ body {
 
 .user-info {
   min-width: 800px;
+}
+
+.search-banner {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-label {
+  width: 400px;
+  position: relative;
+  margin: 0 10px;
+}
+
+.search-box {
+  background-color: #fff;
+  color: #000;
+  padding: 12px 15px;
+  border-radius: 8px;
+  outline: none;
+  border: none;
+  width: 100%;
+  padding-right: 50px;
+}
+
+.search-box::placeholder {
+  color: #d1d1d1;
+}
+
+.search-icon {
+  position: absolute;
+  top: 12px;
+  right: 15px;
+  color: #7e70b7;
 }

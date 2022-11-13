@@ -29,7 +29,7 @@ const YourFeedTab = (props) => {
 const GlobalFeedTab = (props) => {
   const clickHandler = (ev) => {
     ev.preventDefault();
-    props.onTabClick("all", agent.Items.all, agent.Items.all());
+    props.onTabClick("all", agent.Items.all, agent.Items.all(undefined, props.searchQuery));
   };
   return (
     <li className="nav-item">
@@ -62,6 +62,7 @@ const mapStateToProps = (state) => ({
   ...state.itemList,
   tags: state.home.tags,
   token: state.common.token,
+  searchQuery: state.home.searchQuery
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -80,7 +81,7 @@ const MainView = (props) => {
             onTabClick={props.onTabClick}
           />
 
-          <GlobalFeedTab tab={props.tab} onTabClick={props.onTabClick} />
+          <GlobalFeedTab tab={props.tab} onTabClick={props.onTabClick} searchQuery={props.searchQuery} />
 
           <TagFilterTab tag={props.tag} />
         </ul>

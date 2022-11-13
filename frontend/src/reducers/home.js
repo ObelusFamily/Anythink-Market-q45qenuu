@@ -1,4 +1,4 @@
-import { HOME_PAGE_LOADED, HOME_PAGE_UNLOADED } from "../constants/actionTypes";
+import { HOME_PAGE_LOADED, HOME_PAGE_UNLOADED, HOME_PAGE_SEARCH } from "../constants/actionTypes";
 
 const reducer = (state = {}, action) => {
   switch (action.type) {
@@ -9,6 +9,11 @@ const reducer = (state = {}, action) => {
       };
     case HOME_PAGE_UNLOADED:
       return {};
+    case HOME_PAGE_SEARCH:
+      return {
+        ...state,
+        searchQuery: action.searchQuery
+      };
     default:
       return state;
   }
