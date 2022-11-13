@@ -53,35 +53,42 @@ const Tags = {
 const limit = (count, p) => `limit=${count}&offset=${p ? p * count : 0}`;
 const omitSlug = (item) => Object.assign({}, item, { slug: undefined });
 const Items = {
-  all: (page) => requests.get(`/items?${limit(1000, page)}`),
+  all: (page, title) =>
+    requests.get(
+      `/items?${limit(1000, page)}${
+        typeof title !== "undefined" ? `&title=${title}` : ``
+      }`
+    ),
   bySeller: (seller, page) =>
-    requests.get(`/items?seller=${encode(seller)}&${limit(500, page)}`),
+    requests.get(`/ items ? seller = ${encode(seller)} & ${limit(500, page)}`),
   byTag: (tag, page) =>
-    requests.get(`/items?tag=${encode(tag)}&${limit(1000, page)}`),
-  del: (slug) => requests.del(`/items/${slug}`),
-  favorite: (slug) => requests.post(`/items/${slug}/favorite`),
+    requests.get(`/ items ? tag = ${encode(tag)} & ${limit(1000, page)}`),
+  del: (slug) => requests.del(`/ items / ${slug}`),
+  favorite: (slug) => requests.post(`/ items / ${slug} / favorite`),
   favoritedBy: (seller, page) =>
-    requests.get(`/items?favorited=${encode(seller)}&${limit(500, page)}`),
+    requests.get(
+      `/ items ? favorited = ${encode(seller)} & ${limit(500, page)}`
+    ),
   feed: () => requests.get("/items/feed?limit=10&offset=0"),
-  get: (slug) => requests.get(`/items/${slug}`),
-  unfavorite: (slug) => requests.del(`/items/${slug}/favorite`),
+  get: (slug) => requests.get(`/ items / ${slug}`),
+  unfavorite: (slug) => requests.del(`/ items / ${slug} / favorite`),
   update: (item) =>
-    requests.put(`/items/${item.slug}`, { item: omitSlug(item) }),
+    requests.put(`/ items / ${item.slug}`, { item: omitSlug(item) }),
   create: (item) => requests.post("/items", { item }),
 };
 
 const Comments = {
   create: (slug, comment) =>
-    requests.post(`/items/${slug}/comments`, { comment }),
+    requests.post(`/ items / ${slug} / comments`, { comment }),
   delete: (slug, commentId) =>
-    requests.del(`/items/${slug}/comments/${commentId}`),
-  forItem: (slug) => requests.get(`/items/${slug}/comments`),
+    requests.del(`/ items / ${slug} / comments / ${commentId}`),
+  forItem: (slug) => requests.get(`/ items / ${slug} / comments`),
 };
 
 const Profile = {
-  follow: (username) => requests.post(`/profiles/${username}/follow`),
-  get: (username) => requests.get(`/profiles/${username}`),
-  unfollow: (username) => requests.del(`/profiles/${username}/follow`),
+  follow: (username) => requests.post(`/ profiles / ${username} / follow`),
+  get: (username) => requests.get(`/ profiles / ${username}`),
+  unfollow: (username) => requests.del(`/ profiles / ${username} / follow`),
 };
 
 const agentObj = {
