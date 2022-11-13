@@ -71,15 +71,21 @@ body {
 .search-label {
   width: 0;
   position: relative;
-  margin: 0 3px;
   visibility: collapse;
   opacity: 0;
   transition: opacity 0.4s;
 }
 
+.stuff {
+  margin-left: 10px;
+}
+
+#get-part {
+  margin-right: 10px;
+}
+
 .visible {
   width: 400px;
-  margin: 0 10px;
   visibility: visible;
   opacity: 1;
 }
